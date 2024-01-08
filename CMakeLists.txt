@@ -14,6 +14,7 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/.path)
 file(GLOB_RECURSE files *.c **/*.c *.cpp **/*.cpp)
 foreach (file ${files})
     string(REGEX REPLACE ".+/(.+)\\..*" "\\1" exe ${file})
-    add_executable(${exe} ${file})
+    add_executable(${exe} ${file}
+            src/common/cbq.h)
     message(\ \ \ \ --\ \[${exe}.c\]\ will\ be\ compiled\ to\ \'.runtime/${exe}.exe\')
 endforeach ()
