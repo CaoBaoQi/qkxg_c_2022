@@ -5,6 +5,8 @@
 
 ![image-20240108122000830](https://jz-cbq-1311841992.cos.ap-beijing.myqcloud.com/images/image-20240108122000830.png)
 
+---
+
 ## 一、安装 CLion
 
 <img src="https://jz-cbq-1311841992.cos.ap-beijing.myqcloud.com/images/image-20240109193927918.png" alt="image-20240109193927918" style="zoom:67%;" />
