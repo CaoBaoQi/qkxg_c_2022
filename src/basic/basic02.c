@@ -24,6 +24,7 @@ int main() {
     basic02_demo03();
     basic02_demo04();
     basic02_demo05();
+    basic02_demo06();
     return 0;
 }
 
@@ -193,8 +194,9 @@ void basic02_demo05() {
      !* strcspn(str1, str2) 的返回值是 7，表示字符串 str1 开头连续不包含 str2 中任何字符的长度为 7
      */
     str[strcspn(str, "\n")] = '\0';
-    int length = strlen(str);
-    int i = 0, j = length - 1;
+    size_t length = strlen(str);
+    int i = 0;
+    size_t j = length - 1;
     while (i < j) {
         if (str[i] != str[j]) {
             printf("%s is not back str\n", str);
@@ -207,6 +209,57 @@ void basic02_demo05() {
     printFooter("basic02_demo05");
 }
 
+void computeLPSArray(const char* pat, size_t M, int* lps) {
+    int len = 0;
+    lps[0] = 0;
+    size_t i = 1;
+    while (i < M) {
+        if (pat[i] == pat[len]) {
+            len++;
+            lps[i] = len;
+            i++;
+        } else {
+            if (len != 0) {
+                len = lps[len - 1];
+            } else {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+}
+
+int KMPSearch(char* pat, char* txt) {
+    /**
+     !* 使用 size_t 类型来代替 int 以存储字符串的长度是一个合理的修改
+     !* 这是因为 strlen 函数返回的是 size_t 类型的值 这是一个无符号整数类型，用于表示大小或长度
+     !* 将 size_t 类型的值赋给 int 类型的变量可能会引发类型转换问题 尤其是当字符串长度超过 int 类型可以表示的最大值时
+     */
+    size_t M = strlen(pat);
+    size_t N = strlen(txt);
+    int lps[M];
+    computeLPSArray(pat, M, lps);
+    size_t i = 0;
+    int j = 0;
+    while (i < N) {
+        if (pat[j] == txt[i]) {
+            j++;
+            i++;
+        }
+        if (j == M) {
+            printf("Found pattern at index %zu \n", i - j);
+            return 1; // Pattern found
+        } else if (i < N && pat[j] != txt[i]) {
+            if (j != 0)
+                j = lps[j - 1];
+            else
+                i = i + 1;
+        }
+    }
+    return 0; // Pattern not found
+}
+
+
 /**
  * 字符串匹配 KMP 算法
  * 现在请你设计一个 C 语言程序 判断第一个字符串中是否包含了第二个字符串
@@ -216,6 +269,13 @@ void basic02_demo05() {
  */
 void basic02_demo06() {
     printHeader("basic02_demo06");
+
+    char txt[] = "abcdabbc";
+    char pat[] = "cda";
+    if (KMPSearch(pat, txt))
+        printf("Pattern found in the string.\n");
+    else
+        printf("Pattern not found in the string.\n");
 
     printFooter("basic02_demo06");
 }
