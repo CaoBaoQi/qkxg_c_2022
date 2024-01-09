@@ -25,7 +25,7 @@ typedef struct Student {
 
 /**
  * @author caobaoqi
- * @name basic03
+ * @name C 程序设计-03-数组、指针、结构体、枚举
  * @date 2024/1/9 12:26
  */
 int main() {
@@ -180,3 +180,4 @@ void basic03_demo07(){
 
     printFooter("basic03_demo07");
 }
+

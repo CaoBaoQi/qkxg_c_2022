@@ -15,7 +15,7 @@ void basic02_demo06();
 
 /**
  * @author caobaoqi
- * @name basic02
+ * @name C 程序设计-02-流程控制
  * @date 2024/1/8 14:54
  */
 int main() {

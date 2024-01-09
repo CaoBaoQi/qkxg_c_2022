@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.27)
-project(qkxg_c_2022 C)
+project(qkxg_c_2022 C) # 修改为自己项目的名称 project(项目名称 C)
 # 设定 C 语言和 C++ 版本
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 20)
