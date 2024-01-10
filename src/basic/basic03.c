@@ -12,8 +12,13 @@ void basic03_demo06();
 
 void basic03_demo07();
 
+void basic03_demo08();
 
+
+#include <malloc.h>
 #include "../common/cbq.h"
+#include "stdio.h"
+
 #define COUNT 3
 
 typedef struct Student {
@@ -39,6 +44,7 @@ int main() {
     basic03_demo05();
     basic03_demo06();
     basic03_demo07();
+    basic03_demo08();
     return 0;
 }
 
@@ -50,7 +56,6 @@ void basic03_demo01() {
 
     Student cbq = {1, 21, "CaoBaoQi"};
     Student *cbq_p = &cbq;
-
     printf("show info by struct: {id = %d, age = %d, name = %s}\n", cbq.id, cbq.age, cbq.name);
     printf("show info by struct pointer(Complex) {id = %d, age = %d, name = %s}\n", (*cbq_p).id, (*cbq_p).age,
            (*cbq_p).name);
@@ -118,13 +123,19 @@ void basic03_demo04() {
  */
 void basic03_demo05() {
     printHeader("basic03_demo05");
+
     Student students[COUNT] = {{1, 21, "CBQ"},
-                           {2, 21, "CBH"},
-                           {3,18,"CB"}};
-
-    for (int i = 0; i < COUNT; ++i){
+                               {2, 21, "CBH"},
+                               {3, 18, "CB"}};
+    printf("Show INFO By array: \n");
+    for (int i = 0; i < COUNT; ++i) {
         printf("INFO: name = %s, id = %d, age = %d \n", students[i].name, students[i].id, students[i].age);
-
+    }
+    Student *student_p = students;
+    printf("Show INFO By pointer: \n");
+    for (int i = 0; i < COUNT; ++i) {
+        printf("INFO: name = %s, id = %d, age = %d \n", student_p->name, student_p->id, student_p->age);
+        student_p++;
     }
 
     printFooter("basic03_demo05");
@@ -136,11 +147,10 @@ void basic03_demo05() {
 void basic03_demo06() {
     printHeader("basic03_demo06");
 
-    typedef union Teacher{
+    typedef union Teacher {
         int id;
         char name;
-    }Teacher;
-
+    } Teacher;
     printf("union Teacher size is = %llu\n", sizeof(Teacher));
     printf("=========================\n");
     Teacher teacher;
@@ -159,25 +169,49 @@ void basic03_demo06() {
 /**
  * 枚举的使用
  */
-void basic03_demo07(){
+void basic03_demo07() {
     printHeader("basic03_demo07");
 
-    enum status { low = 1, middle = 2, high = 3};
+    enum status {
+        low = 1, middle = 2, high = 3
+    };
     printf("low: %d\n", low);
     printf("middle: %d\n", middle);
     printf("high: %d\n", high);
-
     /**
      * low2 由于是第一个，所以还是从 0 开始
      * 不过 middle2 这里已经指定为 6 了 所以紧跟着的 high2 初始值就是 middle2 的值 +1 了
      * 因此 low2 现在是 0 middle就是 6 high2 就是 7 了
      */
-    enum status2 {low2, middle2 = 6, high2};
+    enum status2 {
+        low2, middle2 = 6, high2
+    };
     printf("low2: %d\n", low2);
     printf("middle2: %d\n", middle2);
     printf("high2: %d\n", high2);
 
-
     printFooter("basic03_demo07");
 }
 
+/**
+ *? malloc 函数的使用：
+ * <p>
+ ** malloc 用于向系统申请分配指定 size 个字节的内存空间返回类型是 void * 类型 如果申请成功返回首地址
+ * <p>
+ *! 如果失败返回 NULL 空地址（比如系统内存不足了就可能会申请失败）
+ * <p>
+ *! 内存资源是很宝贵的（不像硬盘几个 T 随便用 我们的电脑可能 32G 的内存都算高配了）
+ * <p>
+ *! 不能随便浪费 所以一般情况下 malloc 和 free 都是一一对应的 这样才能安全合理地使用内存
+ */
+void basic03_demo08() {
+    printHeader("basic03_demo08");
+
+    int *p = (int *) malloc(sizeof(int));
+    *p = 128;
+    printf("*p = %d \n", *p);
+    free(p);
+    p = NULL;
+
+    printFooter("basic03_demo08");
+}

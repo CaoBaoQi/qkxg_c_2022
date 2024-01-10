@@ -96,20 +96,18 @@ void basic02_demo01() {
      */
     int arr[11] = {3, 5, 7, 2, 9, 0, 6, 7, 1, 8, 4};
     int length = sizeof(arr) / sizeof(arr[0]);
-
     printf("------------------------------------\nbefore sort: ");
     for (int i = 0; i < length; ++i) {
         printf("%d ", arr[i]);
     }
     printf("\n------------------------------------\n");
-
     bubbleSort(arr, length);
-
     printf("------------------------------------\nafter sort: ");
     for (int i = 0; i < length; ++i) {
         printf("%d ", arr[i]);
     }
     printf("\n------------------------------------\n");
+
     printFooter("basic02_demo01");
 }
 
@@ -153,11 +151,10 @@ void basic02_demo03() {
  */
 void basic02_demo04() {
     printHeader("basic02_demo04");
+
     char cbq01[] = {'H', 'E', 'L', 'L', 'O', ' ', 'C', 'B', 'Q', '\0'};
     const char cbq02[] = "HELLO CBQ";
-
     printf("cbq01 = %s \n| cbq02 = %s ", cbq01, cbq02);
-
 
     printFooter("basic02_demo04");
 }

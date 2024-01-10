@@ -39,9 +39,11 @@ int main() {
  */
 void basic01_demo01() {
     printHeader("basic01_demo01");
+
     int c;
     int a = (3 + (c = 2)) * 6;
     printf("a = %d", a);
+
     printFooter("basic01_demo01");
 }
 
@@ -52,9 +54,11 @@ void basic01_demo01() {
  */
 void basic01_demo02() {
     printHeader("basic01_demo02");
+
     int b, c;
     int a = (b = 5, c = b + 8);
     printf("a = %d", a);
+
     printFooter("basic01_demo02");
 }
 
@@ -76,6 +80,7 @@ void basic01_demo03() {
     } else {
         printf("Score is: %d Level is: bad", score);
     }
+
     printFooter("basic01_demo03");
 }
 
@@ -124,9 +129,9 @@ void basic01_demo04() {
  */
 void basic01_demo05() {
     printHeader("basic01_demo05");
+
     int num = 1000;
     int first = 0, second = 0, third = 0;
-
     while (num != -1) {
         third = num / 100;
         second = num / 10 % 10;
@@ -190,7 +195,6 @@ void basic01_demo07() {
     int index;
     printf("Please Input Your index: \n");
     scanf_s("%d", &index);
-
     printf("index = %d | result = %d ", index, fibonacciSequence(index));
 
     printFooter("basic01_demo07");
